@@ -1,9 +1,29 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Route
+} from 'react-router-dom';
+
+// App components
+import Header from './Header';
+import Home from './Home';
+import About from './About';
+import Teachers from './Teachers';
+import Courses from './Courses';
 
 const App = () => (
-  <div className="container">
+  <BrowserRouter>
+    <div className="container">
+      <Header />
+      <Route exact path="/" component={Home} />
+      { /* The render prop lets you do inline component rendering.
+      One of the main reasons you'd want yo use render over  component  is when you need to pass props to the component you're rendering. */}
+      <Route path="/about" render={() => <About title='About' />} />
+      <Route path="/teachers" component={Teachers} />
+      <Route path="/courses" component={Courses} />
+    </div>
+  </BrowserRouter>
 
-  </div>
 );
 
 export default App;
